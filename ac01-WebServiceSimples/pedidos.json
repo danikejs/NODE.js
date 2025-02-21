@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "idprodutos": 1,
+        "idclientes": 1
+    },
+    {
+        "id": 2,
+        "idprodutos": 2,
+        "idclientes": 2
+    },
+    {
+        "id": 3,
+        "idprodutos": 3,
+        "idclientes": 3
+    },
+    {
+        "id": 4,
+        "idprodutos": 4,
+        "idclientes": 4
+    },
+    {
+        "id": 5,
+        "idprodutos": 5,
+        "idclientes": 5
+    }
+]
