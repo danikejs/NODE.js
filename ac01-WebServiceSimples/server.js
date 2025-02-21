@@ -9,7 +9,7 @@ function readFile(response, file) {
 }
 
 function callback(request, response) {
-    response.writeHead(200, { "content/type": "application/json; charset=urf-8" })
+    response.writeHead(200, { "Content-type": "application/json; charset=urf-8" })
     var parts = url.parse(request.url);
     var path = parts.path;
 
