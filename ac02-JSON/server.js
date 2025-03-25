@@ -6,24 +6,26 @@ const app = express();
 const port = 3000;
 const artigosPath = path.join(__dirname, 'artigos.json');
 
-//filtrar nome 
+//filtrar titulo 
 
 const artigosData = fs.readFileSync(artigosPath, 'utf-8');
 const artigos = JSON.parse(artigosData);
 
-function buscarArtigos(nome) {
+function buscarArtigos(titulo) {
     return artigos.find(artigo =>
-        artigo.nome.toLowerCase() === nome.toLowerCase());
+        artigo.titulo.toLowerCase() === titulo.toLowerCase());
 }
-
-app.get('/buscar-artigo/:nome', (req, res) => {
-    const nomeDoArtigoBuscado = req.params.nome;
-    const artigoEncontrado = buscarArtigos(nomeDoArtigoBuscado);
+app.get('/buscar-artigo/' , (req, res) => {
+    res.send('<p>exreva na merda da url a bosta do nome do artigo fdp do caralho</p> <br> <a href="/home">voltar</a>')
+})
+app.get('/buscar-artigo/:titulo', (req, res) => {
+    const tituloDoArtigoBuscado = req.params.titulo;
+    const artigoEncontrado = buscarArtigos(tituloDoArtigoBuscado);
 
     if (artigoEncontrado) {
-        res.send(`<h1>artigo encontrado:</h1><pre> ${JSON.stringify(artigoEncontrado, null, 2)}</pre>`);
+        res.send(`<h1>artigo encontrado:</h1><pre> ${JSON.stringify(artigoEncontrado, null, 2)}</pre> <br> <a href="/home">voltar</a>`);
     } else {
-        res.send('<h1>artigo não encontrado.</h1>');
+        res.send('<h1>artigo não encontrado.</h1> <br> <a href="/buscar-artigo/">voltar</a>');
     }
 });
 
@@ -37,6 +39,7 @@ app.get('/todos-artigos', (req, res) => {
 //cadastrar 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 function salvarArtigos() {
     fs.writeFileSync(artigosPath, JSON.stringify(artigos, null, 2));
 }
@@ -48,15 +51,15 @@ app.get('/adicionar-artigo', (req, res) => {
 app.post('/adicionar-artigo', (req, res) => {
     const NovoArtigo = req.body;
 
-    if (artigos.find(artigos => artigos.nome.toLowerCase() === NovoArtigo.nome.toLowerCase())) {
-        res.send('<h1>Artigo ja existe</h1>');
+    if (artigos.find(artigos => artigos.titulo.toLowerCase() === NovoArtigo.titulo.toLowerCase())) {
+        res.send('<h1>Artigo ja existe</h1> <br> <a href="/adicionar-artigo">adicioar outro artigo</a>');
         return;
     }
 
     artigos.push(NovoArtigo);
 
-    salvarDados();
-    res.send('<h1>artigos add com sucesso</h1>');
+    salvarArtigos();
+    res.send('<h1>artigos add com sucesso</h1> <br> <a href="/home">voltar</a>');
 });
 
 
