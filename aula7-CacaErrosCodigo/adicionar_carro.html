@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>adicinando carros</h1>
+
+    <form action="http://localhost:3000/add-car" method="post">
+        <label for="nome">Nome do carro:</label>
+        <input type="text" name="nome" id="nome" required> <br>
+
+        <label for="desc">Descrição</label>
+        <input id="desc" name="desc" required><br>
+
+        <label for="url_info">Url de Info</label>
+        <input type="text" name="url_info" id="url_info" required><br>
+
+        <button type="submit">Add carros</button>
+    </form>
+</body>
+
+</html>
